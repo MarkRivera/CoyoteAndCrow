@@ -1,15 +1,20 @@
-.sheet-multiLineInput
+.sheet-multi-line-input
+  //TODO: Implement same font for both editing and viewing mode.
+  //TODO: Handle empty field (we probably want to show the textarea by default in this case)
+  min-height: 25px
   position: relative
   textarea
     box-sizing: border-box
     height: 100%
     left: 0
+    min-height: 25px
     opacity: 0
     position: absolute
     top: 0
     width: 100%
     z-index: 2
-    &:focus
+    &:focus,
+    &:empty
       opacity: 1
       + span 
         opacity: 0
