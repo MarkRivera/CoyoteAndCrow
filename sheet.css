@@ -1,0 +1,24 @@
+.sheet-multiLineInput {
+  position: relative;
+}
+.sheet-multiLineInput textarea {
+  box-sizing: border-box;
+  height: 100%;
+  left: 0;
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: 2;
+}
+.sheet-multiLineInput textarea:focus {
+  opacity: 1;
+}
+.sheet-multiLineInput textarea:focus + span {
+  opacity: 0;
+}
+.sheet-multiLineInput span {
+  white-space: pre-wrap;
+  position: relative;
+  z-index: 1;
+}

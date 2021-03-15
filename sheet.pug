@@ -1,0 +1,30 @@
+.sheet-container
+  .sheet-bio
+    label(for="name")
+      span(data-i18n="name")
+      .sheet-single-line-input
+        input(type="text" name="attr_name")
+
+    .sheet-grid-container
+      label(for="archetype")
+        span(data-i18n="archetype")
+        .sheet-single-line-input
+          input(type="text" name="attr_archetype")
+      label(for="path")
+        span(data-i18n="path")
+        .sheet-single-line-input
+          input(type="text" name="attr_path")
+      label(for="motivation")
+        span(data-i18n="motivation")
+        .sheet-single-line-input
+          input(type="text" name="attr_motivation")
+      label(for="age")
+        span(data-i18n="age")
+        .sheet-single-line-input
+          input(type="text" name="attr_age")
+
+    label(for="background")
+      span(data-i18n="background")
+      .sheet-multi-line-input
+        textarea(name="attr_background")
+        span(name="attr_background")
