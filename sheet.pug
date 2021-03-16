@@ -18,3 +18,9 @@ mixin textInput(attr, type = "single")
 
     each attr in ["other-identities", "background", "short-term-goals", "long-term-goals"]
       +textInput(attr, "multi")
+  
+  .sheet-details.sheet-grid-container
+    .sheet-col-left
+      .sheet-stats
+      .sheet-derived-stats  
+    .sheet-col-right
