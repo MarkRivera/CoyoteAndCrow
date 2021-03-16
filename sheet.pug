@@ -21,6 +21,14 @@ mixin textInput(attr, type = "single")
   
   .sheet-details.sheet-grid-container
     .sheet-col-left
+      span(data-i18n="stats")
       .sheet-stats
+        each attr in ["strength", "agility","endurance","intelligence","perception","wisdom","spirit","charisma","will"]
+          +textInput(attr, "single")
+      span(data-i18n="derived-stats")
       .sheet-derived-stats  
+        each attr in ["physical-defense","body","mental-defense","mind", "mystical-defense", "soul"]
+          +textInput(attr, "single")
     .sheet-col-right
+      each attr in [{id: "initative-score", type:"single"}, {id:"abilities", type:"multi"},{id: "legendary-rank", type:"single"},{id:"states-effects",type:"multi"}]
+        +textInput(attr.id, attr.type)

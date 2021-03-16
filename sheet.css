@@ -29,3 +29,14 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
 }
+
+.sheet-details {
+  display: grid;
+  grid-template-columns: 1fr 280px;
+  column-gap: 15px;
+}
+.sheet-details .sheet-stats,
+.sheet-details .sheet-derived-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
