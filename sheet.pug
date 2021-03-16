@@ -1,27 +1,20 @@
-mixin singleLineIput(attr)
+mixin textInput(attr, type = "single")
   label(for=attr)
     span(data-i18n=attr)
-    .sheet-single-line-input
-      input(type="text" name=`attr_${attr}`)
-
-mixin multiLineIput(attr)
-  label(for=attr)
-    span(data-i18n=attr)
-    .sheet-multi-line-input
-      textarea(name=`attr_${attr}` placeholder="Insert information...")
-      span(name=`attr_${attr}`)
+    div(class=`sheet-${type}-line-input`)
+      if(type === "single")
+        input(type="text" name=`attr_${attr}`)
+      else
+        textarea(name=`attr_${attr}` placeholder="Insert information...")
+        span(name=`attr_${attr}`)
       
 .sheet-container
   .sheet-bio
-    +singleLineIput("name")
+    +textInput("name")
 
     .sheet-grid-container
-      +singleLineIput("archetype")
-      +singleLineIput("path")
-      +singleLineIput("motivation")
-      +singleLineIput("age")
+      each attr in ["archetype", "path", "motivation", "age"]
+        +textInput(attr)
 
-    +multiLineIput("other-identities")
-    +multiLineIput("background")
-    +multiLineIput("short-term-goals")
-    +multiLineIput("long-term-goals")
+    each attr in ["other-identities", "background", "short-term-goals", "long-term-goals"]
+      +textInput(attr, "multi")

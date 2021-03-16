@@ -13,14 +13,19 @@
   width: 100%;
   z-index: 2;
 }
-.sheet-multi-line-input textarea:focus, .sheet-multi-line-input textarea:empty {
+.sheet-multi-line-input textarea:focus {
   opacity: 1;
 }
-.sheet-multi-line-input textarea:focus + span, .sheet-multi-line-input textarea:empty + span {
+.sheet-multi-line-input textarea:focus + span {
   opacity: 0;
 }
 .sheet-multi-line-input span {
   white-space: pre-wrap;
   position: relative;
   z-index: 1;
+}
+
+.sheet-bio .sheet-grid-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
 }
