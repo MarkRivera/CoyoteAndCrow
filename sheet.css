@@ -1,3 +1,18 @@
+.sheet-container input,
+.sheet-container textarea {
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.sheet-grid-container {
+  display: grid;
+}
+
+.sheet-grid-header {
+  height: 20px;
+  font-weight: bold;
+}
+
 .sheet-multi-line-input {
   min-height: 25px;
   position: relative;
@@ -26,7 +41,6 @@
 }
 
 .sheet-bio .sheet-grid-container {
-  display: grid;
   grid-template-columns: 1fr 1fr;
 }
 
@@ -35,8 +49,28 @@
   grid-template-columns: 1fr 280px;
   column-gap: 15px;
 }
-.sheet-details .sheet-stats,
-.sheet-details .sheet-derived-stats {
-  display: grid;
+.sheet-details .sheet-grid-container {
   grid-template-columns: 1fr 1fr 1fr;
+}
+
+.sheet-skills .sheet-grid-container {
+  align-items: start;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+.sheet-skills .sheet-grid-container .sheet-grid-container {
+  grid-template-columns: 1fr 50px 50px 50px;
+}
+.sheet-skills .sheet-grid-container .sheet-col-right {
+  position: relative;
+}
+.sheet-skills .sheet-grid-container .sheet-col-right .repcontainer {
+  grid-column: 1/5;
+}
+.sheet-skills .sheet-grid-container .sheet-col-right .repcontainer .repitem {
+  display: grid;
+  grid-template-columns: 1fr 50px 50px 50px;
+}
+.sheet-skills .sheet-grid-container .sheet-col-right .repcontrol {
+  bottom: -20px;
+  position: absolute;
 }

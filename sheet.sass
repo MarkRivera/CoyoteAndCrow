@@ -1,3 +1,17 @@
+//Disabling roll20 default styles
+.sheet-container
+  input,
+  textarea
+    box-sizing: border-box
+    width: 100%
+
+.sheet-grid-container
+  display: grid
+
+.sheet-grid-header
+  height: 20px
+  font-weight: bold
+
 .sheet-multi-line-input
   //TODO: Implement same font for both editing and viewing mode.
   //TODO: Handle empty field (we probably want to show the textarea by default in this case)
@@ -24,14 +38,29 @@
 
 .sheet-bio
   .sheet-grid-container
-    display: grid
     grid-template-columns: 1fr 1fr
 
 .sheet-details
   display: grid
   grid-template-columns: 1fr 280px
   column-gap: 15px
-  .sheet-stats,
-  .sheet-derived-stats
-    display: grid
+  .sheet-grid-container
     grid-template-columns: 1fr 1fr 1fr
+
+.sheet-skills
+  .sheet-grid-container
+    align-items: start
+    grid-template-columns: 1fr 1fr 1fr
+    .sheet-grid-container
+      grid-template-columns: 1fr 50px 50px 50px
+    .sheet-col-right
+      position: relative
+      .repcontainer
+        grid-column: 1/5
+        .repitem
+          display: grid
+          grid-template-columns: 1fr 50px 50px 50px
+      .repcontrol
+        bottom: -20px
+        position: absolute
+      
