@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css?family=Shadows+Into+Light:100,400,700,900&display=swap");
 .sheet-container label {
   box-sizing: border-box;
   margin: 0;
@@ -8,6 +9,9 @@
   border: 0;
   border-radius: 0;
   box-sizing: border-box;
+  font-family: "Shadows Into Light", cursive;
+  font-weight: 600;
+  font-size: 20px;
   width: 100%;
 }
 
@@ -90,6 +94,10 @@
 .sheet-details .sheet-stats label span,
 .sheet-details .sheet-derived-stats label span {
   padding-left: 5px;
+}
+.sheet-details .sheet-stats label input,
+.sheet-details .sheet-derived-stats label input {
+  text-align: center;
 }
 .sheet-details .sheet-derived-stats label span {
   background: black;

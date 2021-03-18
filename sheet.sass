@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Shadows+Into+Light:100,400,700,900&display=swap')
+
 //Disabling roll20 default styles
 .sheet-container
   label
@@ -10,6 +12,9 @@
     border: 0
     border-radius: 0
     box-sizing: border-box
+    font-family: 'Shadows Into Light', cursive
+    font-weight: 600
+    font-size: 20px
     width: 100%
 
 .sheet-grid-container
@@ -20,8 +25,6 @@
   font-weight: bold
 
 .sheet-multi-line-input
-  //TODO: Implement same font for both editing and viewing mode.
-  //TODO: Handle empty field (we probably want to show the textarea by default in this case)
   min-height: 25px
   position: relative
   textarea
@@ -76,6 +79,8 @@
         width: 100%
       span
         padding-left: 5px
+      input
+        text-align: center
 
   .sheet-derived-stats label span
     background: black
