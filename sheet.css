@@ -46,11 +46,18 @@
   opacity: 0;
 }
 .sheet-multi-line-input span {
+  font-family: "Shadows Into Light", cursive;
+  font-weight: 600;
+  font-size: 20px;
   white-space: pre-wrap;
   position: relative;
   z-index: 1;
 }
 
+.sheet-bio > label[for=name],
+.sheet-bio > .sheet-grid-container {
+  margin-right: 270px;
+}
 .sheet-bio input {
   border-bottom: 1px solid black;
 }
