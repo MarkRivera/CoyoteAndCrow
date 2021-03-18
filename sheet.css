@@ -147,8 +147,21 @@
   grid-template-columns: 1fr 280px;
   column-gap: 15px;
 }
-.sheet-details .sheet-col-left > label {
+.sheet-details .sheet-col-left > label, .sheet-details .sheet-col-right > label {
   margin-top: 20px;
+}
+.sheet-details label[for=initative-score], .sheet-details label[for=legendary-rank] {
+  display: flex;
+  align-items: center;
+}
+.sheet-details label[for=initative-score] span, .sheet-details label[for=legendary-rank] span {
+  white-space: nowrap;
+}
+.sheet-details label[for=initative-score] div, .sheet-details label[for=legendary-rank] div {
+  flex-grow: 1;
+}
+.sheet-details label[for=initative-score] div input, .sheet-details label[for=legendary-rank] div input {
+  border-bottom: 1px solid #000;
 }
 .sheet-details .sheet-grid-container {
   grid-template-columns: 1fr 1fr 1fr;
@@ -192,9 +205,19 @@
   color: white;
 }
 
+.sheet-skills {
+  border: 1px solid #000;
+}
+.sheet-skills span, .sheet-skills input {
+  background-color: white;
+  height: 40px;
+  line-height: 40px;
+}
 .sheet-skills .sheet-grid-container {
   align-items: start;
   grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 1px;
+  background-color: #000;
 }
 .sheet-skills .sheet-grid-container .sheet-grid-container {
   grid-template-columns: 1fr 50px 50px 50px;
@@ -210,6 +233,8 @@
   grid-template-columns: 1fr 50px 50px 50px;
 }
 .sheet-skills .sheet-grid-container .sheet-col-right .repcontrol {
-  bottom: -20px;
+  bottom: -50px;
+  left: 50%;
+  transform: translateX(-50%);
   position: absolute;
 }

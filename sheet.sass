@@ -130,9 +130,19 @@
   display: grid
   grid-template-columns: 1fr 280px
   column-gap: 15px
-  .sheet-col-left
+  .sheet-col-left, .sheet-col-right
     > label
       margin-top: 20px
+  label[for="initative-score"], label[for="legendary-rank"]
+    display: flex
+    align-items: center
+    span
+      white-space: nowrap
+    div
+      flex-grow: 1
+      input
+        border-bottom: 1px solid #000
+
   .sheet-grid-container
     grid-template-columns: 1fr 1fr 1fr
   .sheet-stats,
@@ -166,9 +176,19 @@
       color: white
 
 .sheet-skills
+  border: 1px solid #000
+
+  span, input
+    background-color: white
+    height: 40px
+    line-height: 40px
+
   .sheet-grid-container
     align-items: start
     grid-template-columns: 1fr 1fr 1fr
+    grid-gap: 1px
+    background-color: #000
+
     .sheet-grid-container
       grid-template-columns: 1fr 50px 50px 50px
     .sheet-col-right
@@ -179,6 +199,8 @@
           display: grid
           grid-template-columns: 1fr 50px 50px 50px
       .repcontrol
-        bottom: -20px
+        bottom: -50px
+        left: 50%
+        transform: translateX(-50%)
         position: absolute
       
