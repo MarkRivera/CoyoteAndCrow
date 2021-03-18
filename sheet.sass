@@ -70,6 +70,8 @@
 
 .sheet-bio
   position: relative
+  padding-bottom: 20px
+  border-bottom: 10px solid #9655a2 
   .sheet-logo
     position: absolute
     top: 0
@@ -99,6 +101,9 @@
   display: grid
   grid-template-columns: 1fr 280px
   column-gap: 15px
+  .sheet-col-left
+    > label
+      margin-top: 20px
   .sheet-grid-container
     grid-template-columns: 1fr 1fr 1fr
   .sheet-stats,
@@ -125,9 +130,10 @@
       input
         text-align: center
 
-  .sheet-derived-stats label span
-    background: black
-    color: white
+  .sheet-derived-stats
+    label span
+      background: black
+      color: white
 
 .sheet-skills
   .sheet-grid-container

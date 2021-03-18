@@ -77,6 +77,8 @@
 
 .sheet-bio {
   position: relative;
+  padding-bottom: 20px;
+  border-bottom: 10px solid #9655a2;
 }
 .sheet-bio .sheet-logo {
   position: absolute;
@@ -114,6 +116,9 @@
   display: grid;
   grid-template-columns: 1fr 280px;
   column-gap: 15px;
+}
+.sheet-details .sheet-col-left > label {
+  margin-top: 20px;
 }
 .sheet-details .sheet-grid-container {
   grid-template-columns: 1fr 1fr 1fr;
