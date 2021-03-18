@@ -1,5 +1,12 @@
+.sheet-container label {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 .sheet-container input,
 .sheet-container textarea {
+  border: 0;
+  border-radius: 0;
   box-sizing: border-box;
   width: 100%;
 }
@@ -40,6 +47,9 @@
   z-index: 1;
 }
 
+.sheet-bio input {
+  border-bottom: 1px solid black;
+}
 .sheet-bio .sheet-grid-container {
   grid-template-columns: 1fr 1fr;
 }
@@ -51,6 +61,39 @@
 }
 .sheet-details .sheet-grid-container {
   grid-template-columns: 1fr 1fr 1fr;
+}
+.sheet-details .sheet-stats,
+.sheet-details .sheet-derived-stats {
+  background: black;
+  border: 1px solid black;
+  grid-gap: 1px;
+}
+.sheet-details .sheet-stats label,
+.sheet-details .sheet-derived-stats label {
+  align-items: center;
+  display: grid;
+  grid-template-columns: 1fr 50px;
+  grid-gap: 1px;
+  background: black;
+}
+.sheet-details .sheet-stats label span,
+.sheet-details .sheet-stats label input,
+.sheet-details .sheet-derived-stats label span,
+.sheet-details .sheet-derived-stats label input {
+  background: white;
+  box-sizing: border-box;
+  display: inline-block;
+  height: 40px;
+  line-height: 40px;
+  width: 100%;
+}
+.sheet-details .sheet-stats label span,
+.sheet-details .sheet-derived-stats label span {
+  padding-left: 5px;
+}
+.sheet-details .sheet-derived-stats label span {
+  background: black;
+  color: white;
 }
 
 .sheet-skills .sheet-grid-container {
