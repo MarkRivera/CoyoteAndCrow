@@ -15,7 +15,9 @@
     font-family: 'Shadows Into Light', cursive
     font-weight: 600
     font-size: 20px
+    line-height: 24px
     width: 100%
+    margin: 0
 
 .sheet-grid-container
   display: grid
@@ -45,14 +47,31 @@
     font-family: 'Shadows Into Light', cursive
     font-weight: 600
     font-size: 20px
+    line-height: 24px
     white-space: pre-wrap
     position: relative
     z-index: 1
 
 .sheet-bio
+  position: relative
+  .sheet-logo
+    position: absolute
+    top: 0
+    right: 0
+    width: 260px
+
   > label[for="name"],
   > .sheet-grid-container
-    margin-right: 270px
+    width: calc(100% - 270px)
+  > label[for="name"],
+  > .sheet-grid-container label
+    align-items: center
+    display: flex
+    div
+      flex-grow: 1
+
+  > .sheet-grid-container
+    grid-gap: 10px
 
   input
     border-bottom: 1px solid black

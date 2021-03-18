@@ -33,12 +33,11 @@ mixin textInput(attr, type = "single")
       
 .sheet-container
   .sheet-bio
+    img.sheet-logo(alt="Coyote & Crow Logo" src="https://github.com/MarkRivera/CoyoteAndCrow/blob/main/imgs/logo.jpg?raw=true")
     +textInput("name")
-
     .sheet-grid-container
       each attr in ["archetype", "path", "motivation", "age"]
         +textInput(attr)
-
     each attr in ["other-identities", "background", "short-term-goals", "long-term-goals"]
       +textInput(attr, "multi")
   

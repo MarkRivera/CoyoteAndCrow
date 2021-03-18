@@ -12,7 +12,9 @@
   font-family: "Shadows Into Light", cursive;
   font-weight: 600;
   font-size: 20px;
+  line-height: 24px;
   width: 100%;
+  margin: 0;
 }
 
 .sheet-grid-container {
@@ -49,14 +51,36 @@
   font-family: "Shadows Into Light", cursive;
   font-weight: 600;
   font-size: 20px;
+  line-height: 24px;
   white-space: pre-wrap;
   position: relative;
   z-index: 1;
 }
 
+.sheet-bio {
+  position: relative;
+}
+.sheet-bio .sheet-logo {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 260px;
+}
 .sheet-bio > label[for=name],
 .sheet-bio > .sheet-grid-container {
-  margin-right: 270px;
+  width: calc(100% - 270px);
+}
+.sheet-bio > label[for=name],
+.sheet-bio > .sheet-grid-container label {
+  align-items: center;
+  display: flex;
+}
+.sheet-bio > label[for=name] div,
+.sheet-bio > .sheet-grid-container label div {
+  flex-grow: 1;
+}
+.sheet-bio > .sheet-grid-container {
+  grid-gap: 10px;
 }
 .sheet-bio input {
   border-bottom: 1px solid black;
