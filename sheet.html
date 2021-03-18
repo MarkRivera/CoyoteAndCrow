@@ -30,27 +30,32 @@
     </div>
     <label for="other-identities"><span data-i18n="other-identities"></span>
       <div class="sheet-multi-line-input">
+        <input type="hidden" name="attr_other-identities"/>
         <textarea name="attr_other-identities" placeholder="Insert information..."></textarea><span name="attr_other-identities"></span>
       </div>
     </label>
     <label for="background"><span data-i18n="background"></span>
       <div class="sheet-multi-line-input">
+        <input type="hidden" name="attr_background"/>
         <textarea name="attr_background" placeholder="Insert information..."></textarea><span name="attr_background"></span>
       </div>
     </label>
     <label for="short-term-goals"><span data-i18n="short-term-goals"></span>
       <div class="sheet-multi-line-input">
+        <input type="hidden" name="attr_short-term-goals"/>
         <textarea name="attr_short-term-goals" placeholder="Insert information..."></textarea><span name="attr_short-term-goals"></span>
       </div>
     </label>
     <label for="long-term-goals"><span data-i18n="long-term-goals"></span>
       <div class="sheet-multi-line-input">
+        <input type="hidden" name="attr_long-term-goals"/>
         <textarea name="attr_long-term-goals" placeholder="Insert information..."></textarea><span name="attr_long-term-goals"></span>
       </div>
     </label>
   </div>
   <div class="sheet-details sheet-grid-container">
-    <div class="sheet-col-left"><span data-i18n="stats"></span>
+    <div class="sheet-col-left">
+      <label><span data-i18n="stats"></span></label>
       <div class="sheet-grid-container sheet-stats">
         <label for="strength"><span data-i18n="strength"></span>
           <div class="sheet-single-line-input">
@@ -97,7 +102,8 @@
             <input type="text" name="attr_will"/>
           </div>
         </label>
-      </div><span data-i18n="derived-stats"></span>
+      </div>
+      <label><span data-i18n="derived-stats"></span></label>
       <div class="sheet-grid-container sheet-derived-stats"> 
         <label for="physical-defense"><span data-i18n="physical-defense"></span>
           <div class="sheet-single-line-input">
@@ -139,6 +145,7 @@
       </label>
       <label for="abilities"><span data-i18n="abilities"></span>
         <div class="sheet-multi-line-input">
+          <input type="hidden" name="attr_abilities"/>
           <textarea name="attr_abilities" placeholder="Insert information..."></textarea><span name="attr_abilities"></span>
         </div>
       </label>
@@ -149,6 +156,7 @@
       </label>
       <label for="states-effects"><span data-i18n="states-effects"></span>
         <div class="sheet-multi-line-input">
+          <input type="hidden" name="attr_states-effects"/>
           <textarea name="attr_states-effects" placeholder="Insert information..."></textarea><span name="attr_states-effects"></span>
         </div>
       </label>

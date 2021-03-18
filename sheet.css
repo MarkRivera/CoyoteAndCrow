@@ -15,6 +15,11 @@
   line-height: 24px;
   width: 100%;
   margin: 0;
+  padding: 0;
+  outline: 0;
+}
+.sheet-container textarea {
+  background-image: url("https://github.com/MarkRivera/CoyoteAndCrow/blob/main/imgs/textarea-background.png?raw=true");
 }
 
 .sheet-grid-container {
@@ -40,14 +45,18 @@
   top: 0;
   width: 100%;
   z-index: 2;
+  resize: none;
 }
 .sheet-multi-line-input textarea:focus {
+  overflow: scroll-y;
   opacity: 1;
 }
 .sheet-multi-line-input textarea:focus + span {
   opacity: 0;
 }
 .sheet-multi-line-input span {
+  background-image: url("https://github.com/MarkRivera/CoyoteAndCrow/blob/main/imgs/textarea-background.png?raw=true");
+  display: block;
   font-family: "Shadows Into Light", cursive;
   font-weight: 600;
   font-size: 20px;
@@ -55,6 +64,15 @@
   white-space: pre-wrap;
   position: relative;
   z-index: 1;
+}
+.sheet-multi-line-input input:not([value]) + textarea,
+.sheet-multi-line-input input[value=""] + textarea {
+  opacity: 1;
+  overflow: hidden;
+}
+.sheet-multi-line-input input:not([value]) + textarea + span,
+.sheet-multi-line-input input[value=""] + textarea + span {
+  opacity: 0;
 }
 
 .sheet-bio {
@@ -65,6 +83,9 @@
   top: 0;
   right: 0;
   width: 260px;
+}
+.sheet-bio label {
+  margin-top: 20px;
 }
 .sheet-bio > label[for=name],
 .sheet-bio > .sheet-grid-container {

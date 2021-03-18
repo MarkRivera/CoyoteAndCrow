@@ -18,6 +18,11 @@
     line-height: 24px
     width: 100%
     margin: 0
+    padding: 0
+    outline: 0
+  
+  textarea
+    background-image: url("https://github.com/MarkRivera/CoyoteAndCrow/blob/main/imgs/textarea-background.png?raw=true")
 
 .sheet-grid-container
   display: grid
@@ -39,11 +44,15 @@
     top: 0
     width: 100%
     z-index: 2
+    resize: none
     &:focus
+      overflow: scroll-y
       opacity: 1
       + span 
         opacity: 0
   span
+    background-image: url("https://github.com/MarkRivera/CoyoteAndCrow/blob/main/imgs/textarea-background.png?raw=true")
+    display: block
     font-family: 'Shadows Into Light', cursive
     font-weight: 600
     font-size: 20px
@@ -52,6 +61,13 @@
     position: relative
     z-index: 1
 
+  input:not([value]) + textarea,
+  input[value=""] + textarea
+    opacity: 1
+    overflow: hidden
+    + span 
+      opacity: 0
+
 .sheet-bio
   position: relative
   .sheet-logo
@@ -59,7 +75,8 @@
     top: 0
     right: 0
     width: 260px
-
+  label
+    margin-top: 20px
   > label[for="name"],
   > .sheet-grid-container
     width: calc(100% - 270px)
