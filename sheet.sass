@@ -13,6 +13,7 @@
     border-radius: 0
     box-sizing: border-box
     font-family: 'Shadows Into Light', cursive
+    background: transparent
     font-weight: 600
     font-size: 20px
     line-height: 24px
@@ -26,6 +27,11 @@
 
 .sheet-container
   position: relative
+  background-image: url('https://github.com/MarkRivera/CoyoteAndCrow/blob/main/imgs/sheet-background.png?raw=true')
+  background-repeat: no-repeat
+  background-size: contain
+  background-position: center top 100px
+
   &:before,
   &:after
     content: ''
@@ -49,7 +55,10 @@
 
 .sheet-grid-header
   height: 20px
+  display: inline-block
   font-weight: bold
+  overflow: hidden
+  text-overflow: ellipsis
 
 .sheet-multi-line-input
   min-height: 25px
