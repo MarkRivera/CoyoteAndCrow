@@ -22,6 +22,28 @@
   background-image: url("https://github.com/MarkRivera/CoyoteAndCrow/blob/main/imgs/textarea-background.png?raw=true");
 }
 
+.sheet-container {
+  position: relative;
+}
+.sheet-container:before, .sheet-container:after {
+  content: "";
+  background-image: url("https://github.com/MarkRivera/CoyoteAndCrow/blob/main/imgs/sheet-border.png?raw=true");
+  width: 652px;
+  height: 628px;
+  position: absolute;
+  top: -30px;
+  left: -30px;
+  pointer-events: none;
+  z-index: 2;
+}
+.sheet-container:after {
+  top: auto;
+  left: auto;
+  bottom: -30px;
+  right: -30px;
+  transform: rotate(180deg);
+}
+
 .sheet-grid-container {
   display: grid;
 }
