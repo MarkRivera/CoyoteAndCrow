@@ -246,3 +246,27 @@
         height: 500px
         background: white
 
+@media screen and (min-width: 561px) and (max-width: 800px)
+  .sheet-skills
+    padding-bottom: 50px
+  .sheet-skills
+    > .sheet-grid-container
+      grid-template-columns: 1fr 1fr
+      .sheet-col-right
+        grid-column: 1/3
+
+@media screen and (max-width: 561px)
+  .sheet-bio
+    padding-top: 85px
+    .sheet-logo
+      right: calc(50% - 130px)
+    > label[for="character_name"],
+    > .sheet-grid-container
+      width: 100%
+  .sheet-details
+    grid-template-columns: 1fr
+  .sheet-skills
+    padding-bottom: 50px
+  .sheet-skills
+    > .sheet-grid-container
+      grid-template-columns: 1fr
