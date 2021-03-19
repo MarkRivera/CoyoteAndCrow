@@ -52,7 +52,7 @@ mixin textInput(attr, type = "single")
       label
         span(data-i18n="derived-stats")
       .sheet-grid-container.sheet-derived-stats  
-        each attr in ["physical-defense","body","mental-defense","mind", "mystical-defense", "soul"]
+        each attr in ["physical-defense","mental-defense","mystical-defense","mind","body", "soul"]
           +textInput(attr, "single")
     .sheet-col-right
       each attr in [{id: "initative-score", type:"single"}, {id:"abilities", type:"multi"},{id: "legendary-rank", type:"single"},{id:"states-effects",type:"multi"}]
