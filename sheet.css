@@ -139,6 +139,10 @@
 .sheet-bio > .sheet-grid-container label div {
   flex-grow: 1;
 }
+.sheet-bio > label[for=name] div input,
+.sheet-bio > .sheet-grid-container label div input {
+  padding-left: 5px;
+}
 .sheet-bio > .sheet-grid-container {
   grid-column-gap: 10px;
 }
@@ -168,6 +172,7 @@
   flex-grow: 1;
 }
 .sheet-details label[for=initative-score] div input, .sheet-details label[for=legendary-rank] div input {
+  padding-left: 5px;
   border-bottom: 1px solid #000;
 }
 .sheet-details .sheet-grid-container {
