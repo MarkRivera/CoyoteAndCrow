@@ -14,7 +14,7 @@ mixin skill(name=false)
   input(type="text" name=`attr_${skill}stat`)
   input(type="text" name=`attr_${skill}rank`)
   input(type="hidden" name=`attr_${skill}total` value="0")
-  span(name=`attr_${skill}total`)
+  span.sheet-hand-written(name=`attr_${skill}total`)
 
 mixin generalSkillsList(list)
   +skillGridHeader()

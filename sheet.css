@@ -6,46 +6,53 @@
 }
 .sheet-container input,
 .sheet-container textarea {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  outline: 0;
   border: 0;
   border-radius: 0;
-  box-sizing: border-box;
-  font-family: "Shadows Into Light", cursive;
   background: transparent;
   font-weight: 600;
   font-size: 20px;
+  font-family: "Shadows Into Light", cursive;
   line-height: 24px;
-  width: 100%;
-  margin: 0;
-  padding: 0;
-  outline: 0;
 }
 .sheet-container textarea {
   background-image: url("https://github.com/MarkRivera/CoyoteAndCrow/blob/main/imgs/textarea-background.png?raw=true");
 }
 
+.sheet-hand-written {
+  font-weight: 600;
+  font-size: 20px;
+  font-family: "Shadows Into Light", cursive;
+  line-height: 24px;
+}
+
 .sheet-container {
   position: relative;
   background-image: url("https://github.com/MarkRivera/CoyoteAndCrow/blob/main/imgs/sheet-background-translucid.png?raw=true");
-  background-repeat: no-repeat;
-  background-size: contain;
   background-position: center top 100px;
+  background-size: contain;
+  background-repeat: no-repeat;
 }
 .sheet-container:before, .sheet-container:after {
-  content: "";
-  background-image: url("https://github.com/MarkRivera/CoyoteAndCrow/blob/main/imgs/sheet-border.png?raw=true");
-  width: 652px;
-  height: 628px;
   position: absolute;
   top: -30px;
   left: -30px;
-  pointer-events: none;
   z-index: 2;
+  width: 652px;
+  height: 628px;
+  background-image: url("https://github.com/MarkRivera/CoyoteAndCrow/blob/main/imgs/sheet-border.png?raw=true");
+  content: "";
+  pointer-events: none;
 }
 .sheet-container:after {
   top: auto;
-  left: auto;
-  bottom: -30px;
   right: -30px;
+  bottom: -30px;
+  left: auto;
   transform: rotate(180deg);
 }
 
@@ -54,27 +61,27 @@
 }
 
 .sheet-grid-header {
-  height: 20px;
   display: inline-block;
-  font-weight: bold;
   overflow: hidden;
+  height: 20px;
   text-overflow: ellipsis;
+  font-weight: 900;
 }
 
 .sheet-multi-line-input {
-  min-height: 25px;
   position: relative;
+  min-height: 25px;
 }
 .sheet-multi-line-input textarea {
-  box-sizing: border-box;
-  height: 100%;
-  left: 0;
-  min-height: 25px;
-  opacity: 0;
   position: absolute;
   top: 0;
-  width: 100%;
+  left: 0;
   z-index: 2;
+  box-sizing: border-box;
+  min-height: 25px;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
   resize: none;
 }
 .sheet-multi-line-input textarea:focus {
@@ -85,20 +92,20 @@
   opacity: 0;
 }
 .sheet-multi-line-input span {
-  background-image: url("https://github.com/MarkRivera/CoyoteAndCrow/blob/main/imgs/textarea-background.png?raw=true");
-  display: block;
-  font-family: "Shadows Into Light", cursive;
-  font-weight: 600;
-  font-size: 20px;
-  line-height: 24px;
-  white-space: pre-wrap;
   position: relative;
   z-index: 1;
+  display: block;
+  background-image: url("https://github.com/MarkRivera/CoyoteAndCrow/blob/main/imgs/textarea-background.png?raw=true");
+  white-space: pre-wrap;
+  font-weight: 600;
+  font-size: 20px;
+  font-family: "Shadows Into Light", cursive;
+  line-height: 24px;
 }
 .sheet-multi-line-input input:not([value]) + textarea,
 .sheet-multi-line-input input[value=""] + textarea {
-  opacity: 1;
   overflow: hidden;
+  opacity: 1;
 }
 .sheet-multi-line-input input:not([value]) + textarea + span,
 .sheet-multi-line-input input[value=""] + textarea + span {
@@ -125,15 +132,15 @@
 }
 .sheet-bio > label[for=name],
 .sheet-bio > .sheet-grid-container label {
-  align-items: center;
   display: flex;
+  align-items: center;
 }
 .sheet-bio > label[for=name] div,
 .sheet-bio > .sheet-grid-container label div {
   flex-grow: 1;
 }
 .sheet-bio > .sheet-grid-container {
-  grid-gap: 10px;
+  grid-column-gap: 10px;
 }
 .sheet-bio input {
   border-bottom: 1px solid black;
@@ -144,8 +151,8 @@
 
 .sheet-details {
   display: grid;
-  grid-template-columns: 1fr 280px;
   column-gap: 15px;
+  grid-template-columns: 1fr 280px;
 }
 .sheet-details .sheet-col-left > label, .sheet-details .sheet-col-right > label {
   margin-top: 20px;
@@ -168,29 +175,29 @@
 }
 .sheet-details .sheet-stats,
 .sheet-details .sheet-derived-stats {
-  background: black;
   border: 1px solid black;
+  background: black;
   grid-gap: 1px;
   mix-blend-mode: multiply;
 }
 .sheet-details .sheet-stats label,
 .sheet-details .sheet-derived-stats label {
-  align-items: center;
   display: grid;
+  align-items: center;
+  background: black;
   grid-template-columns: 1fr 50px;
   grid-gap: 1px;
-  background: black;
 }
 .sheet-details .sheet-stats label span,
 .sheet-details .sheet-stats label input,
 .sheet-details .sheet-derived-stats label span,
 .sheet-details .sheet-derived-stats label input {
-  background: white;
-  box-sizing: border-box;
   display: inline-block;
-  height: 40px;
-  line-height: 40px;
+  box-sizing: border-box;
   width: 100%;
+  height: 40px;
+  background: white;
+  line-height: 40px;
 }
 .sheet-details .sheet-stats label span,
 .sheet-details .sheet-derived-stats label span {
@@ -206,18 +213,29 @@
 }
 
 .sheet-skills {
+  overflow: hidden;
+  margin-top: 20px;
   border: 1px solid #000;
 }
 .sheet-skills span, .sheet-skills input {
+  height: 30px;
   background-color: white;
-  height: 40px;
-  line-height: 40px;
+  line-height: 30px;
+}
+.sheet-skills span {
+  padding-left: 5px;
+}
+.sheet-skills input:not([name=attr_name]) {
+  text-align: center;
+}
+.sheet-skills input[name=attr_name] {
+  padding-left: 5px;
 }
 .sheet-skills .sheet-grid-container {
   align-items: start;
+  background-color: #000;
   grid-template-columns: 1fr 1fr 1fr;
   grid-gap: 1px;
-  background-color: #000;
 }
 .sheet-skills .sheet-grid-container .sheet-grid-container {
   grid-template-columns: 1fr 50px 50px 50px;
@@ -230,11 +248,20 @@
 }
 .sheet-skills .sheet-grid-container .sheet-col-right .repcontainer .repitem {
   display: grid;
+  background: black;
   grid-template-columns: 1fr 50px 50px 50px;
+  grid-gap: 1px;
+}
+.sheet-skills .sheet-grid-container .sheet-col-right .repcontainer .repitem:not(:first-child) {
+  border-top: 1px solid black;
 }
 .sheet-skills .sheet-grid-container .sheet-col-right .repcontrol {
-  bottom: -50px;
-  left: 50%;
-  transform: translateX(-50%);
   position: absolute;
+  bottom: -501px;
+  left: 0;
+  box-sizing: border-box;
+  padding: 10px 10px 0 10px;
+  width: 100%;
+  height: 500px;
+  background: white;
 }
