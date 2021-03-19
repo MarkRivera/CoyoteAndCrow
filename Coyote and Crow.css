@@ -126,20 +126,20 @@
 .sheet-bio label {
   margin-top: 20px;
 }
-.sheet-bio > label[for=name],
+.sheet-bio > label[for=character_name],
 .sheet-bio > .sheet-grid-container {
   width: calc(100% - 270px);
 }
-.sheet-bio > label[for=name],
+.sheet-bio > label[for=character_name],
 .sheet-bio > .sheet-grid-container label {
   display: flex;
   align-items: center;
 }
-.sheet-bio > label[for=name] div,
+.sheet-bio > label[for=character_name] div,
 .sheet-bio > .sheet-grid-container label div {
   flex-grow: 1;
 }
-.sheet-bio > label[for=name] div input,
+.sheet-bio > label[for=character_name] div input,
 .sheet-bio > .sheet-grid-container label div input {
   padding-left: 5px;
 }
