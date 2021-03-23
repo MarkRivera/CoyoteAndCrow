@@ -41,6 +41,7 @@ const globalAttributesbyCategory = {
   }
 };
 
+//Extracts the ID from an repeating attribure like repeating_specialized-skills_XXXXXXXXXXX_stat:
 const getUID = function(value) {
   const regexp = /-.{19}(?=_)|-.{19}$/g;
   const valueAsString = String(value);
@@ -48,10 +49,12 @@ const getUID = function(value) {
   return (match) ? match.join() : "";
 };
 
+//Reads text attribute and return its value or 0 when not valid:
 const getNumericValue = function(attribute, defaultValue=0) {
   return (attribute && !isNaN(attribute)) ? parseInt(attribute): defaultValue;
 };
 
+//Reads the stat and rank o the chosen skill and updates its total:
 const updateSkillTotal = function(statAttribute, rankAttribute, totalAttribute) {
   getAttrs([statAttribute, rankAttribute], values => {
     const stat = getNumericValue(values[statAttribute]);
@@ -64,12 +67,15 @@ const updateSkillTotal = function(statAttribute, rankAttribute, totalAttribute) 
   });
 };
 
+//Sets a listerner to update the skill total on changes to skills stats and ranks:
 Object.keys(globalAttributesbyCategory.generalSkills).forEach(skill => {
   on(`change:${skill}_stat change:${skill}_rank`, eventinfo => {
     updateSkillTotal(`${skill}_stat`, `${skill}_rank`, `${skill}_total`);
+    console.log('Updating General Skills Totals');
   });
 });
 
+//Update a list of skills related to a specific attribure (Strength, Agility, ...):
 const updateSkillsStats = function(skillList) {
   const skillAttributes = skillList.map(skill => { 
     return `${skill}_rank`; 
@@ -85,7 +91,7 @@ const updateSkillsStats = function(skillList) {
         const relatedStats = globalAttributesbyCategory.generalSkills[skill];
         const statA = getNumericValue(values[relatedStats[0]]);
         const statB = getNumericValue(values[relatedStats[1]]);
-        const stat = Math.max(statA, statB);
+        const stat = (parseInt(values[`${skill}_rank`]) > 0) ? Math.max(statA, statB) : Math.min(statA, statB);
         const update = {
           [`${skill}_stat`]: stat
         };
@@ -95,17 +101,21 @@ const updateSkillsStats = function(skillList) {
   });
 }
 
+//Sets a listerner to update skill stats on changes to linked stat:
 const skillsByAttributes = globalAttributesbyCategory.skillsByAttribute();
 Object.keys(skillsByAttributes).forEach(attribute => {
   on(`change:${attribute}`, eventinfo => {
     updateSkillsStats(skillsByAttributes[attribute]);
+    console.log('Updating Skill Stat');
   });
 });
 
+//Sets a listerner to update the specializedskill total on changes to stats and ranks:
 on('change:repeating_specialized-skills:stat change:repeating_specialized-skills:rank', eventinfo => {
   const uid = getUID(eventinfo.sourceAttribute);
   const prefix = `repeating_specialized-skills_${uid}`;
   updateSkillTotal(`${prefix}_stat`, `${prefix}_rank`, `${prefix}_total`);
+  console.log('Updating Specialized Skills Totals');
 });
 
 //# sourceURL=coyoteandcrow.js
