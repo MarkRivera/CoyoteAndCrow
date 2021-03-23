@@ -8,10 +8,12 @@ mixin skill(name=false)
   if(name)
     span(data-i18n=name)
     - var skill = `${name}_`
+    input(type="hidden" name=`attr_${skill}stat`)
+    span.sheet-hand-written(name=`attr_${skill}stat`)
   else
     - var skill = ""
     input(type="text" name=`attr_${skill}name`)
-  input(type="text" name=`attr_${skill}stat`)
+    input(type="text" name=`attr_${skill}stat`)
   input(type="text" name=`attr_${skill}rank`)
   input(type="hidden" name=`attr_${skill}total` value="0")
   span.sheet-hand-written(name=`attr_${skill}total`)
