@@ -92,7 +92,7 @@ Object.keys(globalAttributesbyCategory.generalSkills).forEach(function (skill) {
 }); //Update a list of skills related to a specific attribure (Strength, Agility, ...):
 
 var updateSkillsStats = function updateSkillsStats(skillList) {
-  var shouldPropogate = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
+  var callback = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : function () {};
   var skillAttributes = skillList.map(function (skill) {
     return "".concat(skill, "_rank");
   });
@@ -111,9 +111,7 @@ var updateSkillsStats = function updateSkillsStats(skillList) {
 
         var update = _defineProperty({}, "".concat(skill, "_stat"), stat);
 
-        setAttrs(update, {
-          silent: shouldPropogate
-        });
+        setAttrs(update, callback);
       }
     });
   });
@@ -127,13 +125,13 @@ Object.keys(skillsByAttributes).forEach(function (attribute) {
     console.log("Updating Skill Stat");
   });
 }); // When a rank is changed, update stat:
-// if rank goes to 0, select the lower of the two related stats
-// Not propogate if the rank is 0
 
 Object.keys(globalAttributesbyCategory.generalSkills).forEach(function (skill) {
   on("change:".concat(skill, "_rank"), function (eventinfo) {
     // const newRank = getNumericValue(eventinfo.newValue)
-    updateSkillsStats([skill]); // Falsy values prevent propogation
+    updateSkillsStats([skill], function () {
+      updateSkillTotal("".concat(skill, "_stat"), "".concat(skill, "_rank"), "".concat(skill, "_total"));
+    });
   });
 }); //Sets a listerner to update the specializedskill total on changes to stats and ranks:
 

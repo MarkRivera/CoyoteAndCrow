@@ -98,7 +98,7 @@ Object.keys(globalAttributesbyCategory.generalSkills).forEach(skill => {
 });
 
 //Update a list of skills related to a specific attribure (Strength, Agility, ...):
-const updateSkillsStats = function (skillList, shouldPropogate = true) {
+const updateSkillsStats = function (skillList, callback = () => {}) {
   const skillAttributes = skillList.map(skill => {
     return `${skill}_rank`;
   });
@@ -124,7 +124,7 @@ const updateSkillsStats = function (skillList, shouldPropogate = true) {
         const update = {
           [`${skill}_stat`]: stat,
         };
-        setAttrs(update, { silent: shouldPropogate });
+        setAttrs(update, callback);
       }
     });
   });
@@ -140,14 +140,13 @@ Object.keys(skillsByAttributes).forEach(attribute => {
 });
 
 // When a rank is changed, update stat:
-// if rank goes to 0, select the lower of the two related stats
-
-// Not propogate if the rank is 0
 
 Object.keys(globalAttributesbyCategory.generalSkills).forEach(skill => {
   on(`change:${skill}_rank`, eventinfo => {
     // const newRank = getNumericValue(eventinfo.newValue)
-    updateSkillsStats([skill]); // Falsy values prevent propogation
+    updateSkillsStats([skill], () => {
+      updateSkillTotal(`${skill}_stat`, `${skill}_rank`, `${skill}_total`);
+    });
   });
 });
 
