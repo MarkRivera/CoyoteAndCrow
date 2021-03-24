@@ -21,16 +21,21 @@ mixin skill(name=false)
         option(value=stat) #{stat}
   input(type="text" name=`attr_${skill}rank`)
   input(type="hidden" name=`attr_${skill}total` value="0")
-  span.sheet-hand-written(name=`attr_${skill}total`)
+  button(type="roll" name=`roll_${name}` value=`/roll @{${skill}total}d12`)
+    span.sheet-hand-written(name=`attr_${skill}total`)
 
 mixin generalSkillsList(list)
   +skillGridHeader()
   each skill in list
     +skill(skill)
 
-mixin textInput(attr, type = "single")
+mixin textInput(attr, type = "single", rollable = false)
   label(for=attr)
-    span(data-i18n=attr.replace(/_/g,'-'))
+    if(rollable)
+      button(type="roll" name=`roll_${name}` value=`/roll @{${attr}}d12`)
+        span(data-i18n=attr.replace(/_/g,'-'))
+    else
+      span(data-i18n=attr.replace(/_/g,'-'))
     div(class=`sheet-${type}-line-input`)
       if(type === "single")
         input(type="text" name=`attr_${attr}`)
@@ -55,7 +60,7 @@ mixin textInput(attr, type = "single")
         span(data-i18n="stats")
       .sheet-grid-container.sheet-stats
         each attr in generalStats
-          +textInput(attr, "single")
+          +textInput(attr, "single", true)
       label
         span(data-i18n="derived-stats")
       .sheet-grid-container.sheet-derived-stats  

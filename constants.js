@@ -10,6 +10,7 @@ const globalAttributesbyCategory = {
     "charisma",
     "will",
   ],
+  nonUpdatableSkills: ["cybernetics", "herbalism", "medicine", "ceremony"],
   generalSkills: {
     "art": ["spirit", "will"],
     "atheletics": ["strength", "agility"],
