@@ -1,3 +1,5 @@
+- var generalStats = ["strength", "intelligence", "spirit", "agility", "perception", "charisma", "endurance","wisdom","will"]
+
 mixin skillGridHeader(type="general")
   span.sheet-grid-header(data-i18n=`${type}-skills`)
   span.sheet-grid-header(data-i18n="stat")
@@ -13,7 +15,10 @@ mixin skill(name=false)
   else
     - var skill = ""
     input(type="text" name=`attr_${skill}name`)
-    input(type="text" name=`attr_${skill}stat`)
+    select(type="text" name=`attr_${skill}stat`)
+      option -
+      each stat in generalStats.sort()
+        option(value=stat) #{stat}
   input(type="text" name=`attr_${skill}rank`)
   input(type="hidden" name=`attr_${skill}total` value="0")
   span.sheet-hand-written(name=`attr_${skill}total`)
@@ -41,7 +46,7 @@ mixin textInput(attr, type = "single")
     .sheet-grid-container
       each attr in ["archetype", "path", "motivation", "age"]
         +textInput(attr)
-    each attr in ["other-identities", "background", "short-term-goals", "long-term-goals"]
+    each attr in ["other-identities", "background", "gifts-and-burdens", "short-term-goals", "long-term-goals"]
       +textInput(attr, "multi")
   
   .sheet-details.sheet-grid-container
@@ -49,7 +54,7 @@ mixin textInput(attr, type = "single")
       label
         span(data-i18n="stats")
       .sheet-grid-container.sheet-stats
-        each attr in ["strength", "agility","endurance","intelligence","perception","wisdom","spirit","charisma","will"]
+        each attr in generalStats
           +textInput(attr, "single")
       label
         span(data-i18n="derived-stats")
@@ -72,4 +77,6 @@ mixin textInput(attr, type = "single")
           +skill()
 
 script(type="text/worker")
-  include sheetworkers.dev.js
+  include constants.js
+  include functions.js
+  include listeners.js

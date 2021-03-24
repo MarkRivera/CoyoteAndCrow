@@ -40,6 +40,12 @@
         <textarea name="attr_background" placeholder="Insert information..."></textarea><span name="attr_background"></span>
       </div>
     </label>
+    <label for="gifts-and-burdens"><span data-i18n="gifts-and-burdens"></span>
+      <div class="sheet-multi-line-input">
+        <input type="hidden" name="attr_gifts-and-burdens"/>
+        <textarea name="attr_gifts-and-burdens" placeholder="Insert information..."></textarea><span name="attr_gifts-and-burdens"></span>
+      </div>
+    </label>
     <label for="short-term-goals"><span data-i18n="short-term-goals"></span>
       <div class="sheet-multi-line-input">
         <input type="hidden" name="attr_short-term-goals"/>
@@ -62,29 +68,9 @@
             <input type="text" name="attr_strength"/>
           </div>
         </label>
-        <label for="agility"><span data-i18n="agility"></span>
-          <div class="sheet-single-line-input">
-            <input type="text" name="attr_agility"/>
-          </div>
-        </label>
-        <label for="endurance"><span data-i18n="endurance"></span>
-          <div class="sheet-single-line-input">
-            <input type="text" name="attr_endurance"/>
-          </div>
-        </label>
         <label for="intelligence"><span data-i18n="intelligence"></span>
           <div class="sheet-single-line-input">
             <input type="text" name="attr_intelligence"/>
-          </div>
-        </label>
-        <label for="perception"><span data-i18n="perception"></span>
-          <div class="sheet-single-line-input">
-            <input type="text" name="attr_perception"/>
-          </div>
-        </label>
-        <label for="wisdom"><span data-i18n="wisdom"></span>
-          <div class="sheet-single-line-input">
-            <input type="text" name="attr_wisdom"/>
           </div>
         </label>
         <label for="spirit"><span data-i18n="spirit"></span>
@@ -92,9 +78,29 @@
             <input type="text" name="attr_spirit"/>
           </div>
         </label>
+        <label for="agility"><span data-i18n="agility"></span>
+          <div class="sheet-single-line-input">
+            <input type="text" name="attr_agility"/>
+          </div>
+        </label>
+        <label for="perception"><span data-i18n="perception"></span>
+          <div class="sheet-single-line-input">
+            <input type="text" name="attr_perception"/>
+          </div>
+        </label>
         <label for="charisma"><span data-i18n="charisma"></span>
           <div class="sheet-single-line-input">
             <input type="text" name="attr_charisma"/>
+          </div>
+        </label>
+        <label for="endurance"><span data-i18n="endurance"></span>
+          <div class="sheet-single-line-input">
+            <input type="text" name="attr_endurance"/>
+          </div>
+        </label>
+        <label for="wisdom"><span data-i18n="wisdom"></span>
+          <div class="sheet-single-line-input">
+            <input type="text" name="attr_wisdom"/>
           </div>
         </label>
         <label for="will"><span data-i18n="will"></span>
@@ -255,7 +261,18 @@
       <div class="sheet-grid-container sheet-col-right"><span class="sheet-grid-header" data-i18n="specialized-skills"></span><span class="sheet-grid-header" data-i18n="stat"></span><span class="sheet-grid-header" data-i18n="rank"></span><span class="sheet-grid-header" data-i18n="total"></span>
         <fieldset class="repeating_specialized-skills">
           <input type="text" name="attr_name"/>
-          <input type="text" name="attr_stat"/>
+          <select type="text" name="attr_stat">
+            <option>-</option>
+            <option value="agility">agility</option>
+            <option value="charisma">charisma</option>
+            <option value="endurance">endurance</option>
+            <option value="intelligence">intelligence</option>
+            <option value="perception">perception</option>
+            <option value="spirit">spirit</option>
+            <option value="strength">strength</option>
+            <option value="will">will</option>
+            <option value="wisdom">wisdom</option>
+          </select>
           <input type="text" name="attr_rank"/>
           <input type="hidden" name="attr_total" value="0"/><span class="sheet-hand-written" name="attr_total"></span>
         </fieldset>
@@ -263,147 +280,200 @@
     </div>
   </div>
 </div>
-<script type="text/worker">"use strict";
-
-function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
-
-function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
-
-function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
-
-function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-var globalAttributesbyCategory = {
-  stats: ["strength", "agility", "endurance", "intelligence", "perception", "wisdom", "spirit", "charisma", "will"],
+<script type="text/worker">
+  const globalAttributesbyCategory = {
+  stats: [
+    "strength",
+    "agility",
+    "endurance",
+    "intelligence",
+    "perception",
+    "wisdom",
+    "spirit",
+    "charisma",
+    "will",
+  ],
   generalSkills: {
-    art: ["spirit", "will"],
-    atheletics: ["strength", "agility"],
-    ceremony: ["wisdom", "spirit"],
-    charm: ["charisma", "perception"],
-    coercion: ["charisma", "spirit"],
-    computers: ["intelligence", "wisdom"],
-    crafting: ["perception", "spirit"],
-    cybernetics: ["intelligence", "wisdom"],
-    deception: ["charisma", "will"],
-    farming: ["intelligence", "endurance"],
+    "art": ["spirit", "will"],
+    "atheletics": ["strength", "agility"],
+    "ceremony": ["wisdom", "spirit"],
+    "charm": ["charisma", "perception"],
+    "coercion": ["charisma", "spirit"],
+    "computers": ["intelligence", "wisdom"],
+    "crafting": ["perception", "spirit"],
+    "cybernetics": ["intelligence", "wisdom"],
+    "deception": ["charisma", "will"],
+    "farming": ["intelligence", "endurance"],
     "first-aid": ["intelligence", "will"],
-    herbalism: ["perception", "wisdom"],
-    husbandry: ["charisma", "wisdom"],
-    investigation: ["perception", "wisdom"],
-    knowledge: ["intelligence", "wisdom"],
-    language: ["perception", "wisdom"],
-    medicine: ["intelligence", "wisdom"],
+    "herbalism": ["perception", "wisdom"],
+    "husbandry": ["charisma", "wisdom"],
+    "investigation": ["perception", "wisdom"],
+    "knowledge": ["intelligence", "wisdom"],
+    "language": ["perception", "wisdom"],
+    "medicine": ["intelligence", "wisdom"],
     "melee-weapons": ["strength", "endurance"],
-    music: ["spirit", "perception"],
-    performance: ["charisma", "spirit"],
-    piloting: ["intelligence", "agility"],
+    "music": ["spirit", "perception"],
+    "performance": ["charisma", "spirit"],
+    "piloting": ["intelligence", "agility"],
     "ranged-weapons": ["perception", "agility"],
-    science: ["intelligence", "perception"],
-    skulduggery: ["perception", "charisma"],
-    stealth: ["agility", "wisdom"],
-    survival: ["endurance", "wisdom"],
-    tracking: ["perception", "wisdom"],
-    "unarmed-combat": ["strength", "intelligence"]
+    "science": ["intelligence", "perception"],
+    "skulduggery": ["perception", "charisma"],
+    "stealth": ["agility", "wisdom"],
+    "survival": ["endurance", "wisdom"],
+    "tracking": ["perception", "wisdom"],
+    "unarmed-combat": ["strength", "intelligence"],
   },
-  skillsByAttribute: function skillsByAttribute() {
-    var list = {};
-    globalAttributesbyCategory.stats.forEach(function (stat) {
-      list[stat] = Object.keys(globalAttributesbyCategory.generalSkills).filter(function (skill) {
-        return globalAttributesbyCategory.generalSkills[skill].indexOf(stat) > -1;
-      });
+  skillsByAttribute: function () {
+    const list = {};
+    globalAttributesbyCategory.stats.forEach(stat => {
+      list[stat] = Object.keys(globalAttributesbyCategory.generalSkills).filter(
+        skill => {
+          return (
+            globalAttributesbyCategory.generalSkills[skill].indexOf(stat) > -1
+          );
+        }
+      );
     });
     return list;
-  }
-}; //Extracts the ID from an repeating attribure like repeating_specialized-skills_XXXXXXXXXXX_stat:
-
-var getUID = function getUID(value) {
-  var regexp = /-.{19}(?=_)|-.{19}$/g;
-  var valueAsString = String(value);
-  var match = valueAsString.match(regexp);
+  },
+};//Extracts the ID from an repeating attribure like repeating_specialized-skills_XXXXXXXXXXX_stat:
+const getUID = function (value) {
+  const regexp = /-.{19}(?=_)|-.{19}$/g;
+  const valueAsString = String(value);
+  const match = valueAsString.match(regexp);
   return match ? match.join() : "";
-}; //Reads text attribute and return its value or 0 when not valid:
+};
 
+//Check if event was originated by player:
+const isEventPlayerOriginated = event => {
+  return (event.sourceType && event.sourceType === 'player')
+};
 
-var getNumericValue = function getNumericValue(attribute) {
-  var defaultValue = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
-  return attribute && !isNaN(attribute) ? parseInt(attribute) : defaultValue;
-}; //Reads the stat and rank o the chosen skill and updates its total:
+//Makes sure an value is Array:
+const safeguardArray = value => {
+  if(value) return (Array.isArray(value)) ? value : [value];
+  return [];
+};
 
+//Makes sure a value is an Array with unique keys:
+const safeguardUniqueArray = value => {
+  value = safeguardArray(value);
+  return Array.from(new Set(value));
+};
 
-var updateSkillTotal = function updateSkillTotal(statAttribute, rankAttribute, totalAttribute) {
-  getAttrs([statAttribute, rankAttribute], function (values) {
-    var stat = getNumericValue(values[statAttribute]);
-    var rank = getNumericValue(values[rankAttribute]);
-    var total = stat + rank;
+//Makes sure a value is Function:
+const safeguardFunction = value => {
+  return (typeof value === 'function') ? value : () => {};
+};
 
-    var update = _defineProperty({}, totalAttribute, total);
+//Makes sure a value is an Integer
+const safeguardInteger = function (value, defaultValue = 0) {
+  return value && !isNaN(value) ? parseInt(value) : defaultValue;
+};
 
+//Gets the stat, rank and total attribute for a group of skills:
+const getSkillRelatedAttributes = skills => {
+  skills = safeguardArray(skills);
+  const skillRelatedAttributes = ['stat', 'rank', 'total'];
+  
+  let attributes = [];
+  skills.forEach(skill => {
+    skillRelatedAttributes.forEach(attribute => {
+      attributes.push(`${skill}_${attribute}`);
+    });
+    attributes = attributes.concat(globalAttributesbyCategory.generalSkills[skill]);
+  });
+
+  const uniqueAttributes = safeguardUniqueArray(attributes);
+  return uniqueAttributes;
+};
+
+//Updates a list of general skills
+const updateGeneralSkills = skills => {
+  skills = safeguardArray(skills);
+
+  skillRelatedAttributes = getSkillRelatedAttributes(skills);
+
+  getAttrs(skillRelatedAttributes, values => {
+    skills.forEach(skill => {
+      const update = {};
+
+      //Calculate stat
+      const rank = safeguardInteger(values[`${skill}_rank`]);
+      const relatedStats = globalAttributesbyCategory.generalSkills[skill];
+      const statA = safeguardInteger(values[relatedStats[0]]);
+      const statB = safeguardInteger(values[relatedStats[1]]);
+      const stat = (rank > 0) ? Math.max(statA, statB) : Math.min(statA, statB);
+      update[`${skill}_stat`] = stat;
+
+      //Calculate total
+      const total = stat + rank;
+      update[`${skill}_total`] = total;
+
+      setAttrs(update);
+    });
+  });
+};
+
+//Updates a list of specialized skills OR All the skills if no list is passed:
+const processSpecializedSkills = uids => {
+  let relatedAttributes = globalAttributesbyCategory.stats;
+  const prefix = 'repeating_specialized-skills';
+  uids.forEach(uid => {
+    relatedAttributes.push(`${prefix}_${uid}_name`);
+    relatedAttributes.push(`${prefix}_${uid}_stat`);
+    relatedAttributes.push(`${prefix}_${uid}_rank`);
+  });
+  getAttrs(relatedAttributes, values => {
+    const update = {};
+    uids.forEach(uid => {
+      const stat = safeguardInteger(values[values[`${prefix}_${uid}_stat`]]);
+      const rank = safeguardInteger(values[`${prefix}_${uid}_rank`]);
+      const total = stat + rank;
+      update[`${prefix}_${uid}_total`] = total;
+    });
     setAttrs(update);
   });
-}; // Sets a listerner to update the skill total on changes to skills stats and ranks:
-
-
-Object.keys(globalAttributesbyCategory.generalSkills).forEach(function (skill) {
-  on("change:".concat(skill, "_stat change:").concat(skill, "_rank"), function (eventinfo) {
-    if (!eventinfo.sourceType || eventinfo.sourceType !== "player") {
-      return;
-    }
-
-    updateSkillTotal("".concat(skill, "_stat"), "".concat(skill, "_rank"), "".concat(skill, "_total"));
-    console.log("Updating General Skills Totals");
-  });
-}); //Update a list of skills related to a specific attribure (Strength, Agility, ...):
-
-var updateSkillsStats = function updateSkillsStats(skillList) {
-  var callback = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : function () {};
-  var skillAttributes = skillList.map(function (skill) {
-    return "".concat(skill, "_rank");
-  });
-  var statAttributes = [];
-  skillList.forEach(function (skill) {
-    statAttributes = statAttributes.concat(globalAttributesbyCategory.generalSkills[skill]);
-  });
-  var filteredStatAttributes = Array.from(new Set(statAttributes));
-  getAttrs([].concat(_toConsumableArray(skillAttributes), _toConsumableArray(filteredStatAttributes)), function (values) {
-    skillList.forEach(function (skill) {
-      if (!isNaN(values["".concat(skill, "_rank")])) {
-        var relatedStats = globalAttributesbyCategory.generalSkills[skill];
-        var statA = getNumericValue(values[relatedStats[0]]);
-        var statB = getNumericValue(values[relatedStats[1]]);
-        var stat = parseInt(values["".concat(skill, "_rank")]) > 0 ? Math.max(statA, statB) : Math.min(statA, statB);
-
-        var update = _defineProperty({}, "".concat(skill, "_stat"), stat);
-
-        setAttrs(update, callback);
-      }
+};
+const updateSpecializedSkills = uids => {
+  uids = safeguardArray(uids);
+  if(uids.length === 0) {
+    getSectionIDs('specialized-skills', ids => {
+      processSpecializedSkills(ids)
     });
+  } else {
+    processSpecializedSkills(uids);
+  }
+};// Sets a listerner to update a skill when its rank changes
+Object.keys(globalAttributesbyCategory.generalSkills).forEach(skill => {
+  on(`change:${skill}_rank`, event => {
+    updateGeneralSkills(skill);
+    console.log(`Updating General Skill: ${skill}`);
   });
-}; //Sets a listerner to update skill stats on changes to linked stat:
+});
 
+//Sets a listerner to update the specializedskill total on changes to stats and ranks:
+on(
+  "change:repeating_specialized-skills:stat change:repeating_specialized-skills:rank",
+  eventinfo => {
+    const uid = getUID(eventinfo.sourceAttribute);
+    updateSpecializedSkills(uid);
+    console.log(`Updating General Skill: ${uid}`);
+  }
+);
 
-var skillsByAttributes = globalAttributesbyCategory.skillsByAttribute();
-Object.keys(skillsByAttributes).forEach(function (attribute) {
-  on("change:".concat(attribute), function (eventinfo) {
-    updateSkillsStats(skillsByAttributes[attribute]);
-    console.log("Updating Skill Stat");
+//Sets a listerner to update skills that a linked to a specific stats
+const skillsByAttributes = globalAttributesbyCategory.skillsByAttribute();
+Object.keys(skillsByAttributes).forEach(attribute => {
+  on(`change:${attribute}`, eventinfo => {
+    const skills = skillsByAttributes[attribute];
+    updateGeneralSkills(skills);
+    updateSpecializedSkills();
+    console.log(`Updating General Skill: ${skills.join(', ')}`);
+    console.log(`Updating All Specialized Skills`);
   });
-}); // When a rank is changed, update stat:
+});
 
-Object.keys(globalAttributesbyCategory.generalSkills).forEach(function (skill) {
-  on("change:".concat(skill, "_rank"), function (eventinfo) {
-    // const newRank = getNumericValue(eventinfo.newValue)
-    updateSkillsStats([skill], function () {
-      updateSkillTotal("".concat(skill, "_stat"), "".concat(skill, "_rank"), "".concat(skill, "_total"));
-    });
-  });
-}); //Sets a listerner to update the specializedskill total on changes to stats and ranks:
+//# sourceURL=coyoteandcrow.js
 
-on("change:repeating_specialized-skills:stat change:repeating_specialized-skills:rank", function (eventinfo) {
-  var uid = getUID(eventinfo.sourceAttribute);
-  var prefix = "repeating_specialized-skills_".concat(uid);
-  updateSkillTotal("".concat(prefix, "_stat"), "".concat(prefix, "_rank"), "".concat(prefix, "_total"));
-  console.log("Updating Specialized Skills Totals");
-}); //# sourceURL=coyoteandcrow.js
 </script>
