@@ -33,6 +33,26 @@
     border-radius: 0
     text-transform: capitalize
 
+  button[type="roll"]
+    overflow: hidden
+    margin: 0 !important
+    padding: 0 !important
+    width: 100%
+    outline: none!important
+    border: 0
+    border-radius: 0
+    background: white
+    text-align: left
+    font-size: 1em!important
+    &:before
+      content: none!important
+    span:after
+      content: " t"
+      font-family: "dicefontd20"
+    &:hover span
+      color: #9655a2
+
+
 .sheet-hand-written
   font-weight: 600
   font-size: 20px
@@ -100,6 +120,7 @@
     z-index: 1
     display: block
     background-image: url("https://github.com/MarkRivera/CoyoteAndCrow/blob/main/imgs/textarea-background.png?raw=true")
+    text-align: left
     white-space: pre-wrap
     font-weight: 600
     font-size: 20px
@@ -185,7 +206,8 @@
       grid-gap: 1px
 
       span,
-      input
+      input,
+      button
         display: inline-block
         display: inline-block
         overflow: hidden
@@ -196,6 +218,9 @@
         text-overflow: ellipsis
         white-space: nowrap
         line-height: 40px
+
+      button
+        font-weight: bold
 
       span
         padding-left: 5px
@@ -212,7 +237,7 @@
   margin-top: 20px
   border: 1px solid #000
 
-  span, input
+  span, input, button
     height: 30px
     background-color: white
     line-height: 30px

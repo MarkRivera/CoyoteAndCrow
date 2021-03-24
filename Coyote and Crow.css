@@ -30,6 +30,28 @@
   border-radius: 0;
   text-transform: capitalize;
 }
+.sheet-container button[type=roll] {
+  overflow: hidden;
+  margin: 0 !important;
+  padding: 0 !important;
+  width: 100%;
+  outline: none !important;
+  border: 0;
+  border-radius: 0;
+  background: white;
+  text-align: left;
+  font-size: 1em !important;
+}
+.sheet-container button[type=roll]:before {
+  content: none !important;
+}
+.sheet-container button[type=roll] span:after {
+  content: " t";
+  font-family: "dicefontd20";
+}
+.sheet-container button[type=roll]:hover span {
+  color: #9655a2;
+}
 
 .sheet-hand-written {
   font-weight: 600;
@@ -104,6 +126,7 @@
   z-index: 1;
   display: block;
   background-image: url("https://github.com/MarkRivera/CoyoteAndCrow/blob/main/imgs/textarea-background.png?raw=true");
+  text-align: left;
   white-space: pre-wrap;
   font-weight: 600;
   font-size: 20px;
@@ -203,8 +226,10 @@
 }
 .sheet-details .sheet-stats label span,
 .sheet-details .sheet-stats label input,
+.sheet-details .sheet-stats label button,
 .sheet-details .sheet-derived-stats label span,
-.sheet-details .sheet-derived-stats label input {
+.sheet-details .sheet-derived-stats label input,
+.sheet-details .sheet-derived-stats label button {
   display: inline-block;
   display: inline-block;
   overflow: hidden;
@@ -215,6 +240,10 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   line-height: 40px;
+}
+.sheet-details .sheet-stats label button,
+.sheet-details .sheet-derived-stats label button {
+  font-weight: bold;
 }
 .sheet-details .sheet-stats label span,
 .sheet-details .sheet-derived-stats label span {
@@ -234,7 +263,7 @@
   margin-top: 20px;
   border: 1px solid #000;
 }
-.sheet-skills span, .sheet-skills input {
+.sheet-skills span, .sheet-skills input, .sheet-skills button {
   height: 30px;
   background-color: white;
   line-height: 30px;

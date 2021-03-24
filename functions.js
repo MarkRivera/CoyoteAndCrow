@@ -65,7 +65,8 @@ const updateGeneralSkills = skills => {
       const relatedStats = globalAttributesbyCategory.generalSkills[skill];
       const statA = safeguardInteger(values[relatedStats[0]]);
       const statB = safeguardInteger(values[relatedStats[1]]);
-      const stat = (rank > 0) ? Math.max(statA, statB) : Math.min(statA, statB);
+      let stat = (rank > 0) ? Math.max(statA, statB) : Math.min(statA, statB);
+      if(globalAttributesbyCategory.nonUpdatableSkills.indexOf(skill) > -1 && rank === 0) stat = 0;
       update[`${skill}_stat`] = stat;
 
       //Calculate total
