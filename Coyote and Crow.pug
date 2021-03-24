@@ -1,4 +1,4 @@
-- var generalStats = ["strength", "agility","endurance","intelligence","perception","wisdom","spirit","charisma","will"]
+- var generalStats = ["strength", "intelligence", "spirit", "agility", "perception", "charisma", "endurance","wisdom","will"]
 
 mixin skillGridHeader(type="general")
   span.sheet-grid-header(data-i18n=`${type}-skills`)
@@ -17,7 +17,7 @@ mixin skill(name=false)
     input(type="text" name=`attr_${skill}name`)
     select(type="text" name=`attr_${skill}stat`)
       option -
-      each stat in generalStats
+      each stat in generalStats.sort()
         option(value=stat) #{stat}
   input(type="text" name=`attr_${skill}rank`)
   input(type="hidden" name=`attr_${skill}total` value="0")
@@ -46,7 +46,7 @@ mixin textInput(attr, type = "single")
     .sheet-grid-container
       each attr in ["archetype", "path", "motivation", "age"]
         +textInput(attr)
-    each attr in ["other-identities", "background", "short-term-goals", "long-term-goals"]
+    each attr in ["other-identities", "background", "gifts-and-burdens", "short-term-goals", "long-term-goals"]
       +textInput(attr, "multi")
   
   .sheet-details.sheet-grid-container

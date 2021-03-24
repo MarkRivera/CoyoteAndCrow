@@ -6,28 +6,34 @@ const getUID = function (value) {
   return match ? match.join() : "";
 };
 
+//Check if event was originated by player:
 const isEventPlayerOriginated = event => {
   return (event.sourceType && event.sourceType === 'player')
 };
 
+//Makes sure an value is Array:
 const safeguardArray = value => {
   if(value) return (Array.isArray(value)) ? value : [value];
   return [];
 };
 
+//Makes sure a value is an Array with unique keys:
 const safeguardUniqueArray = value => {
   value = safeguardArray(value);
   return Array.from(new Set(value));
 };
 
+//Makes sure a value is Function:
 const safeguardFunction = value => {
   return (typeof value === 'function') ? value : () => {};
 };
 
+//Makes sure a value is an Integer
 const safeguardInteger = function (value, defaultValue = 0) {
   return value && !isNaN(value) ? parseInt(value) : defaultValue;
 };
 
+//Gets the stat, rank and total attribute for a group of skills:
 const getSkillRelatedAttributes = skills => {
   skills = safeguardArray(skills);
   const skillRelatedAttributes = ['stat', 'rank', 'total'];
@@ -44,9 +50,9 @@ const getSkillRelatedAttributes = skills => {
   return uniqueAttributes;
 };
 
-const updateGeneralSkills = (skills, callback) => {
+//Updates a list of general skills
+const updateGeneralSkills = skills => {
   skills = safeguardArray(skills);
-  callback = safeguardFunction(callback);
 
   skillRelatedAttributes = getSkillRelatedAttributes(skills);
 
@@ -66,11 +72,12 @@ const updateGeneralSkills = (skills, callback) => {
       const total = stat + rank;
       update[`${skill}_total`] = total;
 
-      setAttrs(update, callback);
+      setAttrs(update);
     });
   });
 };
 
+//Updates a list of specialized skills OR All the skills if no list is passed:
 const processSpecializedSkills = uids => {
   let relatedAttributes = globalAttributesbyCategory.stats;
   const prefix = 'repeating_specialized-skills';

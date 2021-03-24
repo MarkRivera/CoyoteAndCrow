@@ -40,6 +40,12 @@
         <textarea name="attr_background" placeholder="Insert information..."></textarea><span name="attr_background"></span>
       </div>
     </label>
+    <label for="gifts-and-burdens"><span data-i18n="gifts-and-burdens"></span>
+      <div class="sheet-multi-line-input">
+        <input type="hidden" name="attr_gifts-and-burdens"/>
+        <textarea name="attr_gifts-and-burdens" placeholder="Insert information..."></textarea><span name="attr_gifts-and-burdens"></span>
+      </div>
+    </label>
     <label for="short-term-goals"><span data-i18n="short-term-goals"></span>
       <div class="sheet-multi-line-input">
         <input type="hidden" name="attr_short-term-goals"/>
@@ -62,29 +68,9 @@
             <input type="text" name="attr_strength"/>
           </div>
         </label>
-        <label for="agility"><span data-i18n="agility"></span>
-          <div class="sheet-single-line-input">
-            <input type="text" name="attr_agility"/>
-          </div>
-        </label>
-        <label for="endurance"><span data-i18n="endurance"></span>
-          <div class="sheet-single-line-input">
-            <input type="text" name="attr_endurance"/>
-          </div>
-        </label>
         <label for="intelligence"><span data-i18n="intelligence"></span>
           <div class="sheet-single-line-input">
             <input type="text" name="attr_intelligence"/>
-          </div>
-        </label>
-        <label for="perception"><span data-i18n="perception"></span>
-          <div class="sheet-single-line-input">
-            <input type="text" name="attr_perception"/>
-          </div>
-        </label>
-        <label for="wisdom"><span data-i18n="wisdom"></span>
-          <div class="sheet-single-line-input">
-            <input type="text" name="attr_wisdom"/>
           </div>
         </label>
         <label for="spirit"><span data-i18n="spirit"></span>
@@ -92,9 +78,29 @@
             <input type="text" name="attr_spirit"/>
           </div>
         </label>
+        <label for="agility"><span data-i18n="agility"></span>
+          <div class="sheet-single-line-input">
+            <input type="text" name="attr_agility"/>
+          </div>
+        </label>
+        <label for="perception"><span data-i18n="perception"></span>
+          <div class="sheet-single-line-input">
+            <input type="text" name="attr_perception"/>
+          </div>
+        </label>
         <label for="charisma"><span data-i18n="charisma"></span>
           <div class="sheet-single-line-input">
             <input type="text" name="attr_charisma"/>
+          </div>
+        </label>
+        <label for="endurance"><span data-i18n="endurance"></span>
+          <div class="sheet-single-line-input">
+            <input type="text" name="attr_endurance"/>
+          </div>
+        </label>
+        <label for="wisdom"><span data-i18n="wisdom"></span>
+          <div class="sheet-single-line-input">
+            <input type="text" name="attr_wisdom"/>
           </div>
         </label>
         <label for="will"><span data-i18n="will"></span>
@@ -257,15 +263,15 @@
           <input type="text" name="attr_name"/>
           <select type="text" name="attr_stat">
             <option>-</option>
-            <option value="strength">strength</option>
             <option value="agility">agility</option>
+            <option value="charisma">charisma</option>
             <option value="endurance">endurance</option>
             <option value="intelligence">intelligence</option>
             <option value="perception">perception</option>
-            <option value="wisdom">wisdom</option>
             <option value="spirit">spirit</option>
-            <option value="charisma">charisma</option>
+            <option value="strength">strength</option>
             <option value="will">will</option>
+            <option value="wisdom">wisdom</option>
           </select>
           <input type="text" name="attr_rank"/>
           <input type="hidden" name="attr_total" value="0"/><span class="sheet-hand-written" name="attr_total"></span>
@@ -338,28 +344,34 @@ const getUID = function (value) {
   return match ? match.join() : "";
 };
 
+//Check if event was originated by player:
 const isEventPlayerOriginated = event => {
   return (event.sourceType && event.sourceType === 'player')
 };
 
+//Makes sure an value is Array:
 const safeguardArray = value => {
   if(value) return (Array.isArray(value)) ? value : [value];
   return [];
 };
 
+//Makes sure a value is an Array with unique keys:
 const safeguardUniqueArray = value => {
   value = safeguardArray(value);
   return Array.from(new Set(value));
 };
 
+//Makes sure a value is Function:
 const safeguardFunction = value => {
   return (typeof value === 'function') ? value : () => {};
 };
 
+//Makes sure a value is an Integer
 const safeguardInteger = function (value, defaultValue = 0) {
   return value && !isNaN(value) ? parseInt(value) : defaultValue;
 };
 
+//Gets the stat, rank and total attribute for a group of skills:
 const getSkillRelatedAttributes = skills => {
   skills = safeguardArray(skills);
   const skillRelatedAttributes = ['stat', 'rank', 'total'];
@@ -376,9 +388,9 @@ const getSkillRelatedAttributes = skills => {
   return uniqueAttributes;
 };
 
-const updateGeneralSkills = (skills, callback) => {
+//Updates a list of general skills
+const updateGeneralSkills = skills => {
   skills = safeguardArray(skills);
-  callback = safeguardFunction(callback);
 
   skillRelatedAttributes = getSkillRelatedAttributes(skills);
 
@@ -398,11 +410,12 @@ const updateGeneralSkills = (skills, callback) => {
       const total = stat + rank;
       update[`${skill}_total`] = total;
 
-      setAttrs(update, callback);
+      setAttrs(update);
     });
   });
 };
 
+//Updates a list of specialized skills OR All the skills if no list is passed:
 const processSpecializedSkills = uids => {
   let relatedAttributes = globalAttributesbyCategory.stats;
   const prefix = 'repeating_specialized-skills';
@@ -434,7 +447,6 @@ const updateSpecializedSkills = uids => {
 };// Sets a listerner to update a skill when its rank changes
 Object.keys(globalAttributesbyCategory.generalSkills).forEach(skill => {
   on(`change:${skill}_rank`, event => {
-    if(!isEventPlayerOriginated(event)) return;
     updateGeneralSkills(skill);
     console.log(`Updating General Skill: ${skill}`);
   });

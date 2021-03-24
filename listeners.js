@@ -1,7 +1,6 @@
 // Sets a listerner to update a skill when its rank changes
 Object.keys(globalAttributesbyCategory.generalSkills).forEach(skill => {
   on(`change:${skill}_rank`, event => {
-    if(!isEventPlayerOriginated(event)) return;
     updateGeneralSkills(skill);
     console.log(`Updating General Skill: ${skill}`);
   });
